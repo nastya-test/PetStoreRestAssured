@@ -1,8 +1,6 @@
 package com.services;
 
 import com.models.Pet;
-import com.models.response.AddPetResponse;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
@@ -20,10 +18,12 @@ public class PetService extends RestService{
     }
 
 
-    public AddPetResponse createPet(Pet rq){
-        return given().spec(REQ_SPEC).body(rq).post().as(AddPetResponse.class);
+    public
+    ValidatableResponse createPet(Pet rq){
+        return given().spec(REQ_SPEC).body(rq).post().then().spec(RES_SPEC);
     }
 
-    public ValidatableResponse GetPetResponse (Integer id) {return given().spec(REQ_SPEC).pathParam("id", id).get(getPathParam()).then().log().all();}
+    public
+    ValidatableResponse GetPetResponse (Integer id) {return given().spec(REQ_SPEC).pathParam("id", id).get(getPathParam()).then().spec(RES_SPEC);}
 
 }

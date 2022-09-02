@@ -38,7 +38,7 @@ public class OrderGenerator {
                 .petId(getOrderPetId())
                 .quantity(getOrderQuantity())
                 .shipDate(getOrderShipDate())
-                .orderStatus(getOrderStatus())
+                .status(getOrderStatus())
                 .complete(getOrderComplete())
                 .build();
     }
@@ -73,7 +73,7 @@ public class OrderGenerator {
                 .petId(getRandomOrderPetId())
                 .quantity(getRandomOrderQuantity())
                 .shipDate(getRandomOrderShipDate())
-                .orderStatus(getRandomOrderStatus())
+                .status(getRandomOrderStatus())
                 .complete(getRandomOrderComplete())
                 .build();
     }

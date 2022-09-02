@@ -2,19 +2,16 @@ package com.models;
 
 public class Order {
 
-    //Переменные для конструктора
     private Integer id;
     private Integer petId;
     private Integer quantity;
     private String shipDate;
-    private OrderStatus orderStatus;
+    private OrderStatus status;
     private Boolean complete;
 
-    //Пустой конструктор
     public Order() {
     }
 
-    //Геттеры
     public Integer getId() {
         return id;
     }
@@ -32,14 +29,13 @@ public class Order {
     }
 
     public OrderStatus getOrderStatus() {
-        return orderStatus;
+        return status;
     }
 
     public Boolean getComplete() {
         return complete;
     }
 
-    //Сеттеры
     public void setId(Integer id) {
         this.id = id;
     }
@@ -56,15 +52,14 @@ public class Order {
         this.shipDate = shipDate;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setOrderStatus(OrderStatus status) {
+        this.status = status;
     }
 
     public void setComplete(Boolean complete) {
         this.complete = complete;
     }
 
-    //Преобразовать в строку
     @Override
     public String toString() {
         return "Order{" +
@@ -72,13 +67,11 @@ public class Order {
                 ", petId=" + petId +
                 ", quantity=" + quantity +
                 ", shipDate='" + shipDate + '\'' +
-                ", orderStatus=" + orderStatus +
+                ", status=" + status +
                 ", complete=" + complete +
                 '}';
     }
 
-    //Далее Builder
-    //Возвращаем билдера
     public static Builder builder() {
         return Builder.createBuilder();
     }
@@ -87,17 +80,14 @@ public class Order {
 
         private Order order;
 
-        //Создаём новый заказ
         private Builder() {
             order = new Order();
         }
 
-        //Создаем нового билдера
         private static Builder createBuilder() {
             return new Builder();
         }
 
-        //Далее добавление значений в заказ
         public Builder id(Integer val) {
             order.setId(val);
             return this;
@@ -118,7 +108,7 @@ public class Order {
             return this;
         }
 
-        public Builder orderStatus(OrderStatus val) {
+        public Builder status (OrderStatus val) {
             order.setOrderStatus(val);
             return this;
         }
@@ -128,7 +118,6 @@ public class Order {
             return this;
         }
 
-        //Вернули заказ
         public Order build() {
             return order;
         }
