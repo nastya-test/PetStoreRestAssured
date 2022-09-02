@@ -1,5 +1,7 @@
 package com.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Order {
 
     private Integer id;
@@ -16,44 +18,44 @@ public class Order {
         return id;
     }
 
-    public Integer getPetId() {
-        return petId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public String getShipDate() {
-        return shipDate;
-    }
-
-    public OrderStatus getOrderStatus() {
-        return status;
-    }
-
-    public Boolean getComplete() {
-        return complete;
-    }
-
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getPetId() {
+        return petId;
     }
 
     public void setPetId(Integer petId) {
         this.petId = petId;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String getShipDate() {
+        return shipDate;
     }
 
     public void setShipDate(String shipDate) {
         this.shipDate = shipDate;
     }
 
-    public void setOrderStatus(OrderStatus status) {
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public Boolean getComplete() {
+        return complete;
     }
 
     public void setComplete(Boolean complete) {
@@ -109,7 +111,7 @@ public class Order {
         }
 
         public Builder status (OrderStatus val) {
-            order.setOrderStatus(val);
+            order.setStatus(val);
             return this;
         }
 

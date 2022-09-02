@@ -9,9 +9,8 @@ import org.junit.jupiter.api.Test;
 public class PostTest extends RestTest {
     @Test()
     public void createRequiredPetField() {
-        Order orderRequest = OrderGenerator.getRandomFullFieldOrder();
+        Order orderRequest = OrderGenerator.getFullFieldOrder();
         ValidatableResponse orderResponse = api.getOrderService()
                 .createOrder(orderRequest);
-        System.out.println(orderResponse);
     }
 }

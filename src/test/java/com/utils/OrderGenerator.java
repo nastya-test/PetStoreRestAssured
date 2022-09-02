@@ -9,7 +9,7 @@ import java.util.Random;
 public class OrderGenerator {
 
     public static Integer getOrderId(){
-        return 181;
+        return 12345;
     }
 
     public static Integer getOrderPetId(){
@@ -17,11 +17,11 @@ public class OrderGenerator {
     }
 
     public static Integer getOrderQuantity(){
-        return 10;
+        return 0;
     }
 
     public static String getOrderShipDate(){
-        return "29.08.2022";
+        return "2022-09-02T09:26:18.172Z";
     }
 
     public static OrderStatus getOrderStatus(){
