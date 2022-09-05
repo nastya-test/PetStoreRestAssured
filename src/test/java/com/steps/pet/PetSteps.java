@@ -1,13 +1,20 @@
 package com.steps.pet;
 
 import com.models.Pet;
+import com.models.Status;
 import com.test.RestTest;
 import com.utils.PetGenerator;
+import io.restassured.common.mapper.TypeRef;
+import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.hamcrest.Matchers;
+
+import java.util.List;
+import java.util.Map;
+
+import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 
 public class PetSteps extends RestTest {
 
@@ -27,6 +34,18 @@ public class PetSteps extends RestTest {
     public ValidatableResponse getPetWithId(String id) {
         ValidatableResponse petResponse = api.getPetService()
                 .GetPetResponse(id);
+        return petResponse;
+    }
+
+    public ValidatableResponse getByPetStatus(Status status) {
+        ValidatableResponse petResponse = api.getPetService()
+                .GetPetStatusResponse(status);
+        return petResponse;
+    }
+
+    public List<Map<String, Object>> getMapPet(Status status) {
+        List<Map<String, Object>> petResponse = api.getPetService()
+                .MapPetResponse(status);
         return petResponse;
     }
 
@@ -56,6 +75,14 @@ public class PetSteps extends RestTest {
         return petResponse;
     }
 
+    //Assertions for response
+    public PetSteps assertForResponse() {
+        getPetWithId(validId).assertThat()
+                .contentType(ContentType.JSON)
+                .header("Connection", "keep-alive");
+        return this;
+    }
+
     //Assertions for Get
     public PetSteps assertPetNotFound() {
         getPetWithId(notFoundId).assertThat()
@@ -80,8 +107,23 @@ public class PetSteps extends RestTest {
         return this;
     }
 
+    public PetSteps assertStatusPetFoundMap() {
+        System.out.println(getMapPet(Status.available));
+        return this;
+    }
+
     public PetSteps assertSchemaPetFound() {
         getPetWithId(validId).assertThat().body(matchesJsonSchemaInClasspath("schema.json"));
+        return this;
+    }
+
+    public PetSteps assertPetFindByStatus(Status status) {
+        getByPetStatus(status).statusCode(200);
+        return this;
+    }
+
+    public PetSteps assertPetNameFindByStatus(Status status) {
+        getByPetStatus(status).body("name", hasItems("My best dog"));
         return this;
     }
 

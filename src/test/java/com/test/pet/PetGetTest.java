@@ -7,6 +7,12 @@ import org.junit.jupiter.api.Test;
 public class PetGetTest extends PetSteps {
 
     @Test
+    @DisplayName("Проверка header, Content-type")
+    public void TestResponsePet() {
+        assertForResponse();
+    }
+
+    @Test
     @DisplayName("Поиск несуществующего животного")
     public void TestPetNotFound() {
         assertPetNotFound();
