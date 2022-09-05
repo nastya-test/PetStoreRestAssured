@@ -13,8 +13,14 @@ public class PetGenerator {
     private static List<Tag> getPetTags() {
         return
                 Arrays.asList(
-                new Tag(1821, "newTag1"),
-                new Tag(1822, "newTag2"));
+                        Tag.builder()
+                                .withId(12345)
+                                .withName("newTag")
+                                .build(),
+                        Tag.builder()
+                                .withId(12346)
+                                .withName("newTag2")
+                                .build());
     }
 
     public static String getPetName() {
@@ -54,7 +60,10 @@ public class PetGenerator {
     }
 
     public static Tag getRandomPetTag() {
-        return new Tag(RandomGenerator.generateRandomInt(), RandomGenerator.generateRandomString());
+        return Tag.builder()
+                .withId(RandomGenerator.generateRandomInt())
+                .withName(RandomGenerator.generateRandomString())
+                .build();
     }
 
     public static List<Tag> getRandomPetTags() {
@@ -95,6 +104,7 @@ public class PetGenerator {
     public static Pet getRandomRequiredPet() {
         return Pet.builder()
                 .withName(getRandomPetName())
+                .withPhotoUrls(getRandomPetPhotoUrls())
                 .build();
     }
 
@@ -111,4 +121,5 @@ public class PetGenerator {
     public static Pet getNullPetPet() {
         return Pet.builder().build();
     }
+
 }

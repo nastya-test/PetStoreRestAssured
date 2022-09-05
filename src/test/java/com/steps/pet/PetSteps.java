@@ -12,7 +12,9 @@ import static org.hamcrest.Matchers.notNullValue;
 public class PetSteps extends RestTest {
 
     private static final String notFoundId = "1499198";
-    private static final String validId = "1226";
+    private static final String validId =
+            "1226";
+            //String.valueOf(getNewPetValidId());
     private static final String invalidId = "StringInvalidId";
 
     private final Pet fullRandomPet = PetGenerator.getRandomFullPet();
@@ -21,7 +23,6 @@ public class PetSteps extends RestTest {
     private final Pet requiredRandomPet = PetGenerator.getRandomRequiredPet();
     private final Pet withOutRequiredRandomPet = PetGenerator.getRandomWithoutRequiredPet();
 
-
     //GetStep
     public ValidatableResponse getPetWithId(String id) {
         ValidatableResponse petResponse = api.getPetService()
@@ -29,10 +30,22 @@ public class PetSteps extends RestTest {
         return petResponse;
     }
 
+    public static Integer getNewPetValidId() {
+        ValidatableResponse petResponse = api.getPetService()
+                .createPet(PetGenerator.getRandomFullPet());
+        return petResponse.extract().path("id");
+    }
+
     //PostStep
     public ValidatableResponse postPet(Pet generatePet) {
         ValidatableResponse petResponse = api.getPetService()
                 .createPet(generatePet);
+        return petResponse;
+    }
+
+    public ValidatableResponse postPetWithEmptyBody() {
+        ValidatableResponse petResponse = api.getPetService()
+                .createPetWithNullBody("");
         return petResponse;
     }
 
@@ -95,6 +108,14 @@ public class PetSteps extends RestTest {
 
     public PetSteps assertStatusWithoutRequiredPetCreate() {
         postPet(withOutRequiredRandomPet).statusCode(200);
+        return this;
+    }
+
+    public PetSteps assertStatusEmptyPetCreate() {
+        postPetWithEmptyBody()
+                .statusCode(405)
+                .and()
+                .body("message", equalTo("no data"));
         return this;
     }
 

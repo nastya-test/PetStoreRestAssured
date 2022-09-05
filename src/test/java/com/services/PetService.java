@@ -55,4 +55,13 @@ public class PetService extends RestService {
                 .then()
                 .spec(RES_SPEC);
     }
+
+    public ValidatableResponse createPetWithNullBody(String rq) {
+        return given()
+                .spec(REQ_SPEC)
+                .body(rq)
+                .post()
+                .then()
+                .spec(RES_SPEC);
+    }
 }

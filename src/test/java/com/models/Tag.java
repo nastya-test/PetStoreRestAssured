@@ -8,7 +8,7 @@ public class Tag {
     public Tag() {
     }
 
-    public Tag(Integer id, String name) {
+    private Tag(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -27,6 +27,10 @@ public class Tag {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static Builder builder() {
+        return Builder.createBuilder();
     }
 
     public static final class Builder {

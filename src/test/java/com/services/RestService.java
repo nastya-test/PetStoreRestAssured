@@ -8,11 +8,6 @@ import io.restassured.http.Cookie;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static io.restassured.RestAssured.given;
-
 public abstract class RestService {
     private static final String BASE_URL = "https://petstore.swagger.io/v2";
 

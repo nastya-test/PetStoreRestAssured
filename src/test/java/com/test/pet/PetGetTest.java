@@ -4,7 +4,7 @@ import com.steps.pet.PetSteps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class GetTest extends PetSteps {
+public class PetGetTest extends PetSteps {
 
     @Test
     @DisplayName("Поиск несуществующего животного")

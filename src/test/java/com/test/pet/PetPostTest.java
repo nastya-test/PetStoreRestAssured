@@ -4,7 +4,7 @@ import com.steps.pet.PetSteps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PostTest extends PetSteps {
+public class PetPostTest extends PetSteps {
 
     @Test
     @DisplayName("Создание животного по всем заданным полям")
@@ -39,13 +39,13 @@ public class PostTest extends PetSteps {
     @Test
     @DisplayName("Создание одного и того же животного 2 раза")
     public void TestRepeatPetCreate() {
-
+        assertStatusFullPetCreate().assertStatusFullPetCreate();
     }
 
     @Test
     @DisplayName("Создание животного с пустым body")
     public void TestEmptyPetCreate() {
-
+        assertStatusEmptyPetCreate();
     }
 
 }

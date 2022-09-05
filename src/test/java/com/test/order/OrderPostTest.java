@@ -6,7 +6,7 @@ import com.utils.OrderGenerator;
 import io.restassured.response.ValidatableResponse;
 import org.junit.jupiter.api.Test;
 
-public class PostTest extends RestTest {
+public class OrderPostTest extends RestTest {
     @Test()
     public void createRequiredPetField() {
         Order orderRequest = OrderGenerator.getFullFieldOrder();

@@ -4,7 +4,7 @@ import com.steps.pet.PetSteps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class DeleteTest extends PetSteps {
+public class PetDeleteTest extends PetSteps {
     @Test
     @DisplayName("Удаление существующего животного")
     public void TestDeletePetWithFoundId() {
