@@ -27,7 +27,7 @@ public class PetService extends RestService {
                 .spec(RES_SPEC);
     }
 
-    public ValidatableResponse GetPetResponse(Integer id) {
+    public ValidatableResponse GetPetResponse(String id) {
         return given()
                 .spec(REQ_SPEC)
                 .spec(withParameter("id", id))
@@ -38,7 +38,7 @@ public class PetService extends RestService {
                 .spec(RES_SPEC);
     }
 
-    public ValidatableResponse DeletePetResponse(Integer id) {
+    public ValidatableResponse DeletePetResponse(String id) {
         return given()
                 .spec(REQ_SPEC)
                 .spec(withParameter("id", id))

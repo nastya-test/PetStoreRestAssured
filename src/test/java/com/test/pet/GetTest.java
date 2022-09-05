@@ -1,13 +1,26 @@
 package com.test.pet;
 
 import com.steps.pet.PetSteps;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class GetTest extends PetSteps {
 
     @Test
-    public void TestMessagePetNotFound() {
-        assertMessagePetNotFound().assertStatusPetNotFound();
+    @DisplayName("Поиск несуществующего животного")
+    public void TestPetNotFound() {
+        assertPetNotFound();
     }
 
+    @Test
+    @DisplayName("Поиск существующего животного")
+    public void TestPetFound() {
+        assertStatusPetFound().assertSchemaPetFound();
+    }
+
+    @Test
+    @DisplayName("Поиск животного по невалидному Id")
+    public void TestPetFoundWithInvalidId() {
+        assertPetFoundWithInvalidId();
+    }
 }

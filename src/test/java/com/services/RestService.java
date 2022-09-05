@@ -43,7 +43,7 @@ public abstract class RestService {
 //        return params;
 //    }
 
-    public RequestSpecification withParameter(String key, Integer value){
+    public RequestSpecification withParameter(String key, String value){
         return REQ_SPEC.basePath(getBasePath() + getPathParam()).pathParam(key, value);
     }
 

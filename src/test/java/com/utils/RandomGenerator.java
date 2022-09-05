@@ -2,7 +2,6 @@ package com.utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
-
 import java.util.Random;
 
 

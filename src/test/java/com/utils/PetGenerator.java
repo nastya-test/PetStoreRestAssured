@@ -4,7 +4,6 @@ import com.models.Category;
 import com.models.Pet;
 import com.models.Status;
 import com.models.Tag;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -28,8 +27,8 @@ public class PetGenerator {
                 "photoUrl2");
     }
 
-    public static Integer getPetId() {
-        return 13;
+    public static String getPetId() {
+        return "13";
     }
 
     public static int getRandomPetId() {
@@ -84,7 +83,7 @@ public class PetGenerator {
     public static Pet getRandomFullPet() {
         return Pet.builder()
                 .withName(getRandomPetName())
-                .withId(getRandomPetId())
+                .withId(String.valueOf(getRandomPetId()))
                 .withCategory(
                         getRandomPetCategory()
                 ).withPhotoUrls(getRandomPetPhotoUrls())
@@ -93,7 +92,23 @@ public class PetGenerator {
                 .build();
     }
 
-    public static Pet getEmptyPet() {
+    public static Pet getRandomRequiredPet() {
+        return Pet.builder()
+                .withName(getRandomPetName())
+                .build();
+    }
+
+    public static Pet getRandomWithoutRequiredPet() {
+        return Pet.builder()
+                .withId(String.valueOf(getRandomPetId()))
+                .withCategory(
+                        getRandomPetCategory())
+                .withStatus(getRandomPetStatus())
+                .withTags(getRandomPetTags())
+                .build();
+    }
+
+    public static Pet getNullPetPet() {
         return Pet.builder().build();
     }
 }
