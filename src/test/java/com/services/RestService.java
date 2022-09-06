@@ -1,12 +1,15 @@
 package com.services;
 
+import com.utils.CookieSwitcherTool;
+import com.utils.HeaderSwitcherTool;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
-import io.restassured.http.Cookie;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+
+import static io.restassured.RestAssured.given;
 
 public abstract class RestService {
     private static final String BASE_URL = "https://petstore.swagger.io/v2";
@@ -31,27 +34,16 @@ public abstract class RestService {
                 .build();
     }
 
-//    public Map<String, Integer> addParam(String key, Integer value){
-//        Map<String, Integer> params = new HashMap<String, Integer>();
-//        params.put(key, value);
-//        System.out.println(params);
-//        return params;
-//    }
-
-    public RequestSpecification withParameter(String key, String value){
-        return new RequestSpecBuilder().setBasePath(getBasePath() + getPathParam()).addParam(key, value).build();
+    public RequestSpecification baseSpec(){
+        return given().spec(REQ_SPEC);
     }
 
-    public RequestSpecification withHeader(){
-        return new RequestSpecBuilder().addHeader("User-Agent", "MyAppName").build();
+    public RequestSpecification addCookie(RequestSpecification req){
+        return CookieSwitcherTool.enableAllCookie(req);
     }
 
-    public RequestSpecification withCookie(){
-        Cookie myCookie = new Cookie.Builder("session_id", "1234")
-                .setSecured(true)
-                .setComment("session id cookie")
-                .build();
-        return new RequestSpecBuilder().addCookie(myCookie).build();
+    public RequestSpecification addHeader(RequestSpecification req){
+        return HeaderSwitcherTool.enableAllHeader(req);
     }
 
 

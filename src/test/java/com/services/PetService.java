@@ -3,13 +3,12 @@ package com.services;
 import com.models.Pet;
 import com.models.Status;
 import com.utils.CookieSwitcherTool;
+import com.utils.HeaderSwitcherTool;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-
 import java.util.List;
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
 public class PetService extends RestService {
@@ -27,46 +26,35 @@ public class PetService extends RestService {
 
     //Обычный Post
     public ValidatableResponse createPet(Pet rq) {
-        return given()
-                .spec(REQ_SPEC)
+        return baseSpec()
                 .body(rq)
                 .post()
                 .then()
                 .spec(RES_SPEC);
     }
 
-    //Post исключение для "" в body
-    public ValidatableResponse createPetWithNullBody(String rq) {
-        return given()
-                .spec(REQ_SPEC)
+    //Post исключение для "" в body. Перегрузка
+    public ValidatableResponse createPet(String rq) {
+        return baseSpec()
                 .body(rq)
                 .post()
                 .then()
                 .spec(RES_SPEC);
     }
 
-    //Get о ID
+    //Get with ID (With header, with cookie)
     public ValidatableResponse GetPetResponse(String id) {
-        RequestSpecification req = given()
-                .spec(REQ_SPEC);
-        RequestSpecification reqv = CookieSwitcherTool.enabhleAllCoockie(req);
-                //.spec(withParameter("id", id));
         return given()
-                .spec(reqv)
-                .basePath(getBasePath() + getPathParam())
+                .spec(addHeader(addCookie(baseSpec())))
                 .pathParam("id",id)
-               // .spec(withHeader())
-               // .spec(withCookie())
-                .get()
+                .get(getPathParam())
                 .then()
                 .spec(RES_SPEC);
-        //return req;
     }
 
     //Get о статусу
     public ValidatableResponse GetPetStatusResponse(Status status) {
-        return given()
-                .spec(REQ_SPEC)
+        return baseSpec()
                 .basePath(getBasePath() + "/findByStatus")
                 .queryParam("status", status)
                 .get()
@@ -76,17 +64,8 @@ public class PetService extends RestService {
 
     //Обычный Delete
     public ValidatableResponse DeletePetResponse(String id) {
-//        given()
-//                .spec()
-//
-//        REQ_SPEC.head()
-//         AuthorizitionTool.login(given().spec()).
-//                given()
-//                .spec(REQ_SPEC)
-//                .pathParam(withParameter("id", id))
-        return given()
-                .spec(REQ_SPEC)
-              //  .header(withParameter("id", id))
+        return baseSpec()
+                .pathParam("id",id)
                 .delete(getPathParam())
                 .then()
                 .spec(RES_SPEC);
@@ -94,8 +73,7 @@ public class PetService extends RestService {
 
     //Обычный Put
     public ValidatableResponse PutPetResponse(Pet rq) {
-        return given()
-                .spec(REQ_SPEC)
+        return baseSpec()
                 .body(rq)
                 .put()
                 .then()

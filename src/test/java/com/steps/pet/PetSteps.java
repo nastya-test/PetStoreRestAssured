@@ -65,7 +65,7 @@ public class PetSteps extends RestTest {
 
     public ValidatableResponse postPetWithEmptyBody() {
         ValidatableResponse petResponse = api.getPetService()
-                .createPetWithNullBody("");
+                .createPet("");
         return petResponse;
     }
 
