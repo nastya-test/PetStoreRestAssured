@@ -21,8 +21,9 @@ public class PetSteps extends RestTest {
     private static final String notFoundId = "1499198";
     private static final String validId =
             "1226";
-            //String.valueOf(getNewPetValidId());
+          //  String.valueOf(getNewPetValidId());
     private static final String invalidId = "StringInvalidId";
+    private static final String petName = "doggie";
 
     private final Pet fullRandomPet = PetGenerator.getRandomFullPet();
     private final Pet fullPet = PetGenerator.getFullFieldPet();
@@ -123,7 +124,7 @@ public class PetSteps extends RestTest {
     }
 
     public PetSteps assertPetNameFindByStatus(Status status) {
-        getByPetStatus(status).body("name", hasItems("My best dog"));
+        getByPetStatus(status).body("name", hasItems(petName));
         return this;
     }
 

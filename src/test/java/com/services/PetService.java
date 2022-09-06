@@ -2,8 +2,10 @@ package com.services;
 
 import com.models.Pet;
 import com.models.Status;
+import com.utils.CookieSwitcherTool;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.ValidatableResponse;
+import io.restassured.specification.RequestSpecification;
 
 import java.util.List;
 import java.util.Map;
@@ -45,14 +47,20 @@ public class PetService extends RestService {
 
     //Get о ID
     public ValidatableResponse GetPetResponse(String id) {
+        RequestSpecification req = given()
+                .spec(REQ_SPEC);
+        RequestSpecification reqv = CookieSwitcherTool.enabhleAllCoockie(req);
+                //.spec(withParameter("id", id));
         return given()
-                .spec(REQ_SPEC)
-                .spec(withParameter("id", id))
-                .spec(withHeader())
-                .spec(withCookie())
+                .spec(reqv)
+                .basePath(getBasePath() + getPathParam())
+                .pathParam("id",id)
+               // .spec(withHeader())
+               // .spec(withCookie())
                 .get()
                 .then()
                 .spec(RES_SPEC);
+        //return req;
     }
 
     //Get о статусу
@@ -68,9 +76,17 @@ public class PetService extends RestService {
 
     //Обычный Delete
     public ValidatableResponse DeletePetResponse(String id) {
+//        given()
+//                .spec()
+//
+//        REQ_SPEC.head()
+//         AuthorizitionTool.login(given().spec()).
+//                given()
+//                .spec(REQ_SPEC)
+//                .pathParam(withParameter("id", id))
         return given()
                 .spec(REQ_SPEC)
-                .spec(withParameter("id", id))
+              //  .header(withParameter("id", id))
                 .delete(getPathParam())
                 .then()
                 .spec(RES_SPEC);

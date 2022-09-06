@@ -39,11 +39,11 @@ public abstract class RestService {
 //    }
 
     public RequestSpecification withParameter(String key, String value){
-        return REQ_SPEC.basePath(getBasePath() + getPathParam()).pathParam(key, value);
+        return new RequestSpecBuilder().setBasePath(getBasePath() + getPathParam()).addParam(key, value).build();
     }
 
     public RequestSpecification withHeader(){
-        return REQ_SPEC.header("User-Agent", "MyAppName");
+        return new RequestSpecBuilder().addHeader("User-Agent", "MyAppName").build();
     }
 
     public RequestSpecification withCookie(){
@@ -51,7 +51,7 @@ public abstract class RestService {
                 .setSecured(true)
                 .setComment("session id cookie")
                 .build();
-        return REQ_SPEC.cookie(myCookie);
+        return new RequestSpecBuilder().addCookie(myCookie).build();
     }
 
 
