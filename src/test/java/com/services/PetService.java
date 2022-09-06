@@ -2,11 +2,8 @@ package com.services;
 
 import com.models.Pet;
 import com.models.Status;
-import com.utils.CookieSwitcherTool;
-import com.utils.HeaderSwitcherTool;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
 import java.util.List;
 import java.util.Map;
 import static io.restassured.RestAssured.given;
@@ -52,7 +49,7 @@ public class PetService extends RestService {
                 .spec(RES_SPEC);
     }
 
-    //Get о статусу
+    //Get with Status
     public ValidatableResponse GetPetStatusResponse(Status status) {
         return baseSpec()
                 .basePath(getBasePath() + "/findByStatus")

@@ -4,24 +4,20 @@ import com.models.Pet;
 import com.models.Status;
 import com.test.RestTest;
 import com.utils.PetGenerator;
-import io.restassured.common.mapper.TypeRef;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.hamcrest.Matchers;
-
 import java.util.List;
 import java.util.Map;
-
-import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.*;
 
 public class PetSteps extends RestTest {
 
     private static final String notFoundId = "1499198";
-    private static final String validId =
-            "1226";
-          //  String.valueOf(getNewPetValidId());
+    private String validId =
+           // "1226";
+            String.valueOf(getNewPetValidId());
     private static final String invalidId = "StringInvalidId";
     private static final String petName = "doggie";
 
@@ -190,9 +186,7 @@ public class PetSteps extends RestTest {
         deletePetWithId(validId)
                 .statusCode(200);
         deletePetWithId(validId)
-                .statusCode(404)
-                .and()
-                .body("type", equalTo("unknown"));
+                .statusCode(404);
         return this;
     }
 
