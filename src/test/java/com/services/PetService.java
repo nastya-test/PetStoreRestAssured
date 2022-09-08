@@ -86,6 +86,9 @@ public class PetService extends RestService {
                 .get()
                 .as(new TypeRef<List<Map<String, Object>>>() {
                 });
+        Map<String, Object> firstMapPet=mapPet.get(0);
+        firstMapPet.entrySet().stream().forEach(x -> System.out.println(x));;
+       // System.out.println(firstMapPet);
         return mapPet;
     }
 }

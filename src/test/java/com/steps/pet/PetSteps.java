@@ -16,9 +16,11 @@ import static org.hamcrest.Matchers.*;
 public class PetSteps extends RestTest {
 
     private static final String notFoundId = "1499198";
-    private String validId =
-           // "1226";
-            String.valueOf(getNewPetValidId());
+
+    private String validId() {
+       return String.valueOf(getNewPetValidId());
+    }
+
     private static final String invalidId = "StringInvalidId";
     private static final String petName = "doggie";
 
@@ -75,7 +77,7 @@ public class PetSteps extends RestTest {
 
     //Assertions for response
     public PetSteps assertForResponse() {
-        getPetWithId(validId).assertThat()
+        getPetWithId(validId()).assertThat()
                 .contentType(ContentType.JSON)
                 .header("Connection", "keep-alive");
         return this;
@@ -101,7 +103,7 @@ public class PetSteps extends RestTest {
     }
 
     public PetSteps assertStatusPetFound() {
-        getPetWithId(validId).statusCode(200);
+        getPetWithId(validId()).statusCode(200);
         return this;
     }
 
@@ -111,7 +113,7 @@ public class PetSteps extends RestTest {
     }
 
     public PetSteps assertSchemaPetFound() {
-        getPetWithId(validId).assertThat().body(matchesJsonSchemaInClasspath("schema.json"));
+        getPetWithId(validId()).assertThat().body(matchesJsonSchemaInClasspath("schema.json"));
         return this;
     }
 
@@ -176,17 +178,17 @@ public class PetSteps extends RestTest {
     }
 
     public PetSteps assertDeletePetFound() {
-        deletePetWithId(validId)
+        deletePetWithId(validId())
                 .statusCode(200)
                 .and()
-                .body("message", equalTo(validId));
+                .body("message", equalTo(validId()));
         return this;
     }
 
     public PetSteps assertDeletePetFoundRepeat() {
-        deletePetWithId(validId)
+        deletePetWithId(validId())
                 .statusCode(200);
-        deletePetWithId(validId)
+        deletePetWithId(validId())
                 .statusCode(404);
         return this;
     }
