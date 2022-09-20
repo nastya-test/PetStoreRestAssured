@@ -178,17 +178,19 @@ public class PetSteps extends RestTest {
     }
 
     public PetSteps assertDeletePetFound() {
-        deletePetWithId(validId())
+        final String id = validId();
+        deletePetWithId(id)
                 .statusCode(200)
                 .and()
-                .body("message", equalTo(validId()));
+                .body("message", equalTo(id));
         return this;
     }
 
     public PetSteps assertDeletePetFoundRepeat() {
-        deletePetWithId(validId())
+        final String id = validId();
+        deletePetWithId(id)
                 .statusCode(200);
-        deletePetWithId(validId())
+        deletePetWithId(id)
                 .statusCode(404);
         return this;
     }

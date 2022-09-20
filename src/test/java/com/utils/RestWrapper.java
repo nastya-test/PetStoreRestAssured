@@ -9,7 +9,6 @@ public class RestWrapper {
         return new RestWrapper();
     }
 
-    // А если много сервисов, допустим штук 50
     private PetService petService;
     private OrderService orderService;
 //    private UserService userService;
