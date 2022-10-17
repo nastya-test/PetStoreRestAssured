@@ -4,6 +4,7 @@ import com.models.Pet;
 import com.models.Status;
 import com.test.RestTest;
 import com.utils.PetGenerator;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.hamcrest.Matchers;
@@ -94,6 +95,7 @@ public class PetSteps extends RestTest {
         return this;
     }
 
+    @Step("mmjokeg")
     public PetSteps assertPetFoundWithInvalidId() {
         getPetWithId(invalidId)
                 .statusCode(404)

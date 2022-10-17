@@ -1,12 +1,14 @@
 package com.test.pet;
 
 import com.steps.pet.PetSteps;
+import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PetGetTest extends PetSteps {
 
     @Test
+    @Description("Описание")
     @DisplayName("Проверка header, Content-type")
     public void TestResponsePet() {
         assertForResponse();

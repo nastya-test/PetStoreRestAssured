@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: com.test.pet.PetGetStatusTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 6.286 s <<< FAILURE! - in com.test.pet.PetGetStatusTest
+TestResponsePetAvailable{Status}[2]  Time elapsed: 1.423 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+JSON path name doesn't match.
+Expected: (a collection containing "doggie")
+  Actual: [null, sYHiaWYpfY, ISBcrZqaWL, null, My Updated Pet Name, qrzByENVHN, null]
+
+	at com.test.pet.PetGetStatusTest.TestResponsePetAvailable(PetGetStatusTest.java:16)
+
