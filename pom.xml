@@ -8,20 +8,20 @@
     <artifactId>PetStoreRestAssured</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <repositories>
-<!--Репозиторий удаленный, пойдёт в него, если не найдёт в центральном-->
-<!--        <repository>-->
-<!--            <id>com.springsource.repository.bundles.release </id>-->
-<!--            <url>http://repository.springsource.com/maven/bundles/release </url>-->
-<!--                </repository>-->
+<!--    <repositories>-->
+<!--&lt;!&ndash;Репозиторий удаленный, пойдёт в него, если не найдёт в центральном&ndash;&gt;-->
+<!--&lt;!&ndash;        <repository>&ndash;&gt;-->
+<!--&lt;!&ndash;            <id>com.springsource.repository.bundles.release </id>&ndash;&gt;-->
+<!--&lt;!&ndash;            <url>http://repository.springsource.com/maven/bundles/release </url>&ndash;&gt;-->
+<!--&lt;!&ndash;                </repository>&ndash;&gt;-->
 
-<!--Локальный репозиторий-->
-            <repository>
-                <id>lib</id>
-                <name>local repository</name>
-                <url>file:${project.basedir}/lib</url>
-            </repository>
-    </repositories>
+<!--&lt;!&ndash;Локальный репозиторий&ndash;&gt;-->
+<!--            <repository>-->
+<!--                <id>lib</id>-->
+<!--                <name>local repository</name>-->
+<!--                <url>file:${project.basedir}/lib</url>-->
+<!--            </repository>-->
+<!--    </repositories>-->
 
     <properties>
 
@@ -43,12 +43,12 @@
 
     <dependencies>
 
-<!--        Зависимость для локального репозитория-->
-            <dependency>
-                <groupId>org.newlib</groupId>
-                <artifactId>assertjlibrary</artifactId>
-                <version>322</version>
-            </dependency>
+<!--&lt;!&ndash;        Зависимость для локального репозитория&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.newlib</groupId>-->
+<!--                <artifactId>assertjlibrary</artifactId>-->
+<!--                <version>322</version>-->
+<!--            </dependency>-->
 
         <dependency>
             <groupId>org.junit.platform</groupId>
