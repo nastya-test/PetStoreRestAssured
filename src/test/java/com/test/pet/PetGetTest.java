@@ -12,6 +12,7 @@ public class PetGetTest extends PetSteps {
         assertForResponse();
     }
 
+
     @Test
     @DisplayName("Поиск несуществующего животного")
     public void TestPetNotFound() {
